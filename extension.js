@@ -24,8 +24,8 @@ const PutWindowUtils = Me.imports.putWindow.utils;
 
 class Extension {
   constructor() {
-    this.corners = ["ne", "nw", "se", "sw"];
-    this.directions = ["w", "s", "n", "e"];
+    this.corners = ["w", "c", "e"];
+    this.directions = ["w", "e"];
   }
 
   moveWindow(corner) {
@@ -35,48 +35,40 @@ class Extension {
           w.meta_window.get_monitor(),
         );
         var monitorUpperLeftX = monitorGeometry.x;
-        var monitorUpperLeftY = monitorGeometry.y;
-        var monitorHalfWidth = Math.floor(monitorGeometry.width / 2);
-        var monitorHalfHeight = Math.floor(monitorGeometry.height / 2);
+        var monitorUpperLeftY = monitorGeometry.y + 32;
+        var monitorThirdWidth = Math.floor(monitorGeometry.width / 3);
+        var monitorHeight = monitorGeometry.height - 32;
+        var windowGap = 10;
 
         if (w.meta_window.get_maximized()) {
           w.meta_window.unmaximize(3); // META_MAXIMIZE_BOTH
         }
         switch (corner) {
-          case "ne":
+          case "w":
             w.meta_window.move_resize_frame(
               0,
-              monitorUpperLeftX + monitorHalfWidth,
-              monitorUpperLeftY,
-              monitorHalfWidth,
-              monitorHalfHeight,
+              monitorUpperLeftX + windowGap,
+              monitorUpperLeftY + windowGap,
+              monitorThirdWidth - (2 * windowGap),
+              monitorHeight - (2 * windowGap),
             );
             break;
-          case "nw":
+          case "c":
             w.meta_window.move_resize_frame(
               0,
-              monitorUpperLeftX,
-              monitorUpperLeftY,
-              monitorHalfWidth,
-              monitorHalfHeight,
+              monitorUpperLeftX + monitorThirdWidth + windowGap,
+              monitorUpperLeftY + windowGap,
+              monitorThirdWidth - (2 * windowGap),
+              monitorHeight - (2 * windowGap),
             );
             break;
-          case "se":
+          case "e":
             w.meta_window.move_resize_frame(
               0,
-              monitorUpperLeftX + monitorHalfWidth,
-              monitorUpperLeftY + monitorHalfHeight,
-              monitorHalfWidth,
-              monitorHalfHeight,
-            );
-            break;
-          case "sw":
-            w.meta_window.move_resize_frame(
-              0,
-              monitorUpperLeftX,
-              monitorUpperLeftY + monitorHalfHeight,
-              monitorHalfWidth,
-              monitorHalfHeight,
+              monitorUpperLeftX + (2 * monitorThirdWidth) + windowGap,
+              monitorUpperLeftY + windowGap,
+              monitorThirdWidth - (2 * windowGap),
+              monitorHeight - (2 * windowGap),
             );
             break;
         }
@@ -123,7 +115,7 @@ class Extension {
 
   enable() {
     let settings = ExtensionUtils.getSettings(
-      "org.gnome.shell.extensions.com-troyready-quarterwindows",
+      "org.gnome.shell.extensions.net-kopsis-thirdwindows",
     );
     let mode = Shell.ActionMode.NORMAL;
     let flag = Meta.KeyBindingFlags.NONE;

@@ -57,20 +57,6 @@ function isFocusCandidate(focusWin, candidateWin, direction) {
   //	you want to change to from the center of the focused window
 
   switch (direction) {
-    case "n":
-      if (focus.y <= candidate.y) {
-        return false;
-      }
-      if (focusRect.y <= candidateRect.y + distanceCorrection) {
-        return false;
-      }
-      if (
-        Math.abs(focus.y - candidate.y) + angleCorrection <
-        Math.abs(focus.x - candidate.x)
-      ) {
-        return false;
-      }
-      return true;
     case "e":
       if (focus.x >= candidate.x) {
         return false;
@@ -84,23 +70,6 @@ function isFocusCandidate(focusWin, candidateWin, direction) {
       if (
         Math.abs(focus.y - candidate.y) >
         Math.abs(focus.x - candidate.x) + angleCorrection
-      ) {
-        return false;
-      }
-      return true;
-    case "s":
-      if (focus.y >= candidate.y) {
-        return false;
-      }
-      if (
-        focusRect.y + focusRect.height + distanceCorrection >=
-        candidateRect.y + candidateRect.height
-      ) {
-        return false;
-      }
-      if (
-        Math.abs(focus.y - candidate.y) + angleCorrection <
-        Math.abs(focus.x - candidate.x)
       ) {
         return false;
       }

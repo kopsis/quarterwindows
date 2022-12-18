@@ -1,0 +1,27 @@
+<schemalist>
+  <schema id="org.gnome.shell.extensions.net-kopsis-thirdwindows" path="/org/gnome/shell/extensions/net-kopsis-thirdwindows/">
+
+    <key type="as" name="put-to-corner-w">
+      <default><![CDATA[['<Super>q']]]></default>
+      <summary>Move to the left third</summary>
+    </key>
+    <key type="as" name="put-to-corner-c">
+      <default><![CDATA[['<Super>w']]]></default>
+      <summary>Move to the middle third</summary>
+    </key>
+    <key type="as" name="put-to-corner-e">
+      <default><![CDATA[['<Super>e']]]></default>
+      <summary>Move to the right third</summary>
+    </key>
+
+    <key type="as" name="move-focus-w">
+      <default><![CDATA[['<Shift><Super>q']]]></default>
+      <summary>Focus the window that's west of the current window</summary>
+    </key>
+    <key type="as" name="move-focus-e">
+      <default><![CDATA[['<Shift><Super>e']]]></default>
+      <summary>Focus the window that's east of the current window</summary>
+    </key>
+
+  </schema>
+</schemalist>
